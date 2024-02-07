@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ArtSpaceApp</string>
+    <string name="NightSkyAtBeach_title">Night Sky At Beach</string>
+    <string name="NightSkyAtBeach_desc">Glenn Benson (2024)</string>
+    <string name="CosmicCliffs_title">Cosmic Cliffs</string>
+    <string name="CosmicCliffs_desc">NASA ESA CSA STScI (2022)</string>
+    <string name="BehemothBlackHole_title">Behemoth Black Hole Found in an Unlikely Place</string>
+    <string name="BehemothBlackHole_desc">D. Coe, J. Anderson (2016)</string>
+    <string name="WalksOnTheMoon_title">Walks on the surface of the moon </string>
+    <string name="WalksOnTheMoon_desc">Astronaut Edwin E. Aldrin Jr. (1969)</string>
+    <string name="BadwaterDeathValley_title">Badwater, Death Valley</string>
+    <string name="BadwaterDeathValley_desc">Japan Space Systems (2023)</string>
 </resources>
