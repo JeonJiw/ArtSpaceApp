@@ -83,40 +83,6 @@ fun ArtworkDes(artNum : Int){
 }
 
 @Composable
-fun Buttons(){
-    Row(
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 16.dp)
-    ) {
-        Button(
-            onClick = {
-
-                      },
-            //colors = ButtonDefaults.buttonColors(Color.LightGray),
-            //shape = RectangleShape,
-            modifier = Modifier
-                .height(40.dp)
-                .width(160.dp)
-            ) {
-            Text(text = "Previous")
-        }
-        Button(
-            onClick = { /*TODO*/ },
-            //colors = ButtonDefaults.buttonColors(Color.Gray),
-            //shape = RectangleShape,
-            modifier = Modifier
-                .height(40.dp)
-                .width(160.dp)
-        ) {
-            Text(text = "Next")
-
-        }
-    }
-}
-
-@Composable
 fun Layout() {
     var artNum by remember { mutableStateOf(0) }
 
@@ -158,7 +124,7 @@ fun Layout() {
 
             }
         }
-        //Buttons()
+
     }
 }
 
