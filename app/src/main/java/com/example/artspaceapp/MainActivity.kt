@@ -1,5 +1,6 @@
 package com.example.artspaceapp
 
+import android.accounts.AuthenticatorDescription
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,12 +24,19 @@ import androidx.compose.material3.Shapes
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.artspaceapp.data.arts
 import com.example.artspaceapp.ui.theme.ArtSpaceAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -49,12 +57,18 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ArtContainer(){
-   //Image(painter = , contentDescription = )
+fun ArtContainer(artNum : Int){
+   Image(
+       painter = painterResource(id = arts[artNum].imageResourceId ),
+       contentDescription = "contentDescription",
+       modifier = Modifier
+           .width(300.dp)
+           .height(300.dp)
+   )
 }
 
 @Composable
-fun ArtworkDes(artwork : Int){
+fun ArtworkDes(artNum : Int){
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -62,8 +76,8 @@ fun ArtworkDes(artwork : Int){
             .fillMaxWidth()
 
     ) {
-        Text(text = "Artwork Title")
-        Text(text = "Artwork Artist(Year)")
+        Text(text = stringResource(id = arts[artNum].title))
+        Text(text = stringResource(id = arts[artNum].description))
     }
 
 }
@@ -77,10 +91,14 @@ fun Buttons(){
             .padding(vertical = 16.dp)
     ) {
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+
+                      },
             //colors = ButtonDefaults.buttonColors(Color.LightGray),
             //shape = RectangleShape,
-            modifier = Modifier.height(40.dp).width(160.dp)
+            modifier = Modifier
+                .height(40.dp)
+                .width(160.dp)
             ) {
             Text(text = "Previous")
         }
@@ -88,7 +106,9 @@ fun Buttons(){
             onClick = { /*TODO*/ },
             //colors = ButtonDefaults.buttonColors(Color.Gray),
             //shape = RectangleShape,
-            modifier = Modifier.height(40.dp).width(160.dp)
+            modifier = Modifier
+                .height(40.dp)
+                .width(160.dp)
         ) {
             Text(text = "Next")
 
@@ -98,13 +118,47 @@ fun Buttons(){
 
 @Composable
 fun Layout() {
+    var artNum by remember { mutableStateOf(0) }
+
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(10.dp)
     ) {
-        ArtContainer()
-        ArtworkDes(1)
-        Buttons()
+
+        ArtContainer(artNum)
+        ArtworkDes(artNum)
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 16.dp)
+        ) {
+            Button(
+                onClick = {
+                    artNum = (artNum - 1 + arts.size) % arts.size
+                },
+
+                modifier = Modifier
+                    .height(40.dp)
+                    .width(160.dp)
+            ) {
+                Text(text = "Previous")
+            }
+            Button(
+                onClick = {
+                    artNum = (artNum + 1) % arts.size
+                          },
+
+                modifier = Modifier
+                    .height(40.dp)
+                    .width(160.dp)
+            ) {
+                Text(text = "Next")
+
+            }
+        }
+        //Buttons()
     }
 }
 
